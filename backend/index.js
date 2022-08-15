@@ -13,10 +13,11 @@ app.use((req, res, next) => {
     next();
 });
 
-// Home Route:
-app.get("/", (req, res) => {
-    console.log("GET request on / route.");
-    res.send("Welcome to / route!");
+// ROUTES:
+const cardRoutes = require("./routes/cards");
+app.use("/api/cards", cardRoutes);
+app.get("/*", (req, res) => {
+    res.send("This is just a random route with no purpose.");
 });
 
 // Start server:
