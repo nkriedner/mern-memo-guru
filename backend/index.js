@@ -18,7 +18,7 @@ app.get("/*", (req, res) => {
     res.send("This is just a random route with no purpose.");
 });
 
-// Start server and connect to database:
+// Connecting to database and starting server:
 const connectDB = require("./database/db"); // imports the function to connect to database
 const port = process.env.PORT || 8000; // sets the server port
 connectDB().then(() => {
