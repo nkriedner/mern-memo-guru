@@ -5,9 +5,10 @@ const express = require("express");
 // Create app:
 const app = express();
 
-// Middleware to log all requests methods and paths:
+// MIDDLEWARE:
+app.use(express.json()); // parses body data in json if needed -> enabling acces to req.body
 app.use((req, res, next) => {
-    console.log(`${req.method} request on ${req.path}`);
+    console.log(`${req.method} request on ${req.path}`); // logs path and method for every request to server
     next();
 });
 
