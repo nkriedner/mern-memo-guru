@@ -10,6 +10,15 @@ body {
     font-family: Arial;
 }
 
+main {
+    text-align: center;
+    padding: 1.2rem;
+}
+
+h1 {
+    margin: 1rem 0 2rem 0;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -17,10 +26,6 @@ a {
 
 li {
     list-style: none;
-}
-
-main {
-    padding: 1.2rem;
 }
 
 /* HEADER NAVIGATION BAR */
@@ -45,4 +50,22 @@ header nav ul li a {
 header nav ul li a:hover {
     background: white;
     color: black;
+}
+
+/* CARD LIST */
+table {
+    margin: 0 auto;
+    border-collapse: collapse; /* to avoid multiple borders */
+}
+
+table,
+td,
+th {
+    border: 1px solid grey;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 1rem;
 }
