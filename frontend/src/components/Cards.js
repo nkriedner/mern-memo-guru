@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CardForm from "./CardForm";
 import CardDetail from "./CardDetail";
 
 const Cards = () => {
@@ -20,7 +21,9 @@ const Cards = () => {
     }, []); // the empty array lets it only render once at the beginning
     return (
         <div>
-            <h1>Your Memo Cards</h1>
+            <h1>Cards</h1>
+            <CardForm />
+            <h2>Your Memo Cards</h2>
             <table>
                 <thead>
                     <tr>
