@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useCardsContext } from "../hooks/useCardsContext";
 import CardForm from "./CardForm";
 import CardDetail from "./CardDetail";
 
-const Cards = () => {
-    const [cardList, setCardList] = useState(null);
+const CardsList = () => {
+    const { cards, dispatch } = useCardsContext();
 
     // useEffect runs when a component renders:
     useEffect(() => {
@@ -12,8 +13,9 @@ const Cards = () => {
             const json = await response.json();
 
             if (response.ok) {
-                console.log("inspirations:", json);
-                setCardList(json);
+                console.log("cards:", json);
+                // Update context state:
+                dispatch({ type: "SET_CARDS", payload: json });
             }
         };
 
@@ -32,11 +34,16 @@ const Cards = () => {
                         <th>Memo Level</th>
                     </tr>
                 </thead>
-                {/* Map through cardList and create CardDetail row for every card */}
-                <tbody>{cardList && cardList.map((card) => <CardDetail key={card._id} card={card} />)}</tbody>
+                {/* Map through cards and create CardDetail row for every card */}
+                <tbody>
+                    {cards &&
+                        cards.map((card) => {
+                            return <CardDetail key={card._id} card={card} />;
+                        })}
+                </tbody>
             </table>
         </div>
     );
 };
 
-export default Cards;
+export default CardsList;

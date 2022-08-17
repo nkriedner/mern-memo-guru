@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useCardsContext } from "../hooks/useCardsContext";
+// import { useCardsContext } from "../hooks/useCardsContext"; // to get access to the dispatch function
 
 const CardForm = () => {
+    const { dispatch } = useCardsContext();
     const [content_1, setContent_1] = useState("");
     const [content_2, setContent_2] = useState("");
     const [error, setError] = useState(null);
@@ -31,6 +34,8 @@ const CardForm = () => {
             setContent_2("");
             setError(null);
             console.log("New card added to database:", json);
+            dispatch({ type: "CREATE_CARD", payload: json });
+            // dispatch({ type: "CREATE_CARD", payload: json });
         }
     };
 

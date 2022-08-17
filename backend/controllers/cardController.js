@@ -35,10 +35,7 @@ const createCard = async (req, res) => {
     // Add document to database
     try {
         const card = await Card.create({ content_1, content_2, memo_level });
-        res.status(200).json({
-            mssg: "Created new card in database",
-            data: card,
-        });
+        res.status(200).json(card);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
