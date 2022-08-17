@@ -98,3 +98,14 @@ th,
 td {
     padding: 1rem;
 }
+
+.delete-btn {
+    color: red;
+    font-weight: bold;
+    transition: all 0.5s;
+}
+
+.delete-btn:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}

@@ -57,10 +57,7 @@ const deleteCard = async (req, res) => {
         return res.status(404).json({ error: "No memo card with this id found in database." });
     }
 
-    res.status(200).json({
-        mssg: "Deleted card in database",
-        data: card,
-    });
+    res.status(200).json(card);
 };
 
 // Update a card

@@ -13,7 +13,6 @@ const CardsList = () => {
             const json = await response.json();
 
             if (response.ok) {
-                console.log("cards:", json);
                 // Update context state:
                 dispatch({ type: "SET_CARDS", payload: json });
             }

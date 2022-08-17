@@ -13,6 +13,10 @@ export const cardsReducer = (state, action) => {
             return {
                 cards: [action.payload, ...state.cards], // adds a new card at the beginning and adds the spread rest
             };
+        case "DELETE_CARD":
+            return {
+                cards: state.cards.filter((c) => c._id !== action.payload._id), // keeps all cards that do not equal the payloads card id
+            };
         default:
             return state;
     }
