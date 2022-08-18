@@ -34,6 +34,20 @@ li {
     list-style: none;
 }
 
+/*******************/
+/* UTILITY CLASSES */
+/*******************/
+.btn {
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    border: none;
+    outline: none;
+    background-color: hsl(215, 100%, 50%);
+    color: white;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
 /*************************/
 /* HEADER NAVIGATION BAR */
 /*************************/
@@ -177,18 +191,17 @@ td {
     transform: rotateX(180deg);
 }
 
-.nxt-btn {
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-    border: none;
-    outline: none;
-    background-color: hsl(215, 100%, 50%);
-    color: white;
-    border-radius: 10px;
-    transition: all 0.5s;
+.btn-yes {
+    background-color: hsl(120, 67%, 52%);
+    margin-left: 1rem;
 }
 
-.nxt-btn:hover {
-    background-color: hsl(215, 100%, 40%);
+.btn-no {
+    background-color: hsl(0, 82%, 83%);
+    margin-right: 1rem;
+}
+
+.btn:hover {
     cursor: pointer;
+    transform: scale(1.1);
 }

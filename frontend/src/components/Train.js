@@ -39,6 +39,14 @@ const Train = () => {
         setCurrentAnswer(randomCard.content_2);
     };
 
+    const memoLevelDown = () => {
+        console.log("memoLevelDown clicked...");
+    };
+
+    const memoLevelUp = () => {
+        console.log("memoLevelUp clicked...");
+    };
+
     return (
         <div>
             <h1>Train</h1>
@@ -48,8 +56,16 @@ const Train = () => {
                     <div className="card answer">{currentAnswer}</div>
                 </div>
             </div>
-            <button onClick={nextCard} className="nxt-btn">
+
+            {/* NO, NEXT and YES buttons */}
+            <button onClick={memoLevelDown} className="btn btn-no">
+                ❌
+            </button>
+            <button onClick={nextCard} className="btn btn-nxt">
                 NEXT
+            </button>
+            <button onClick={memoLevelUp} className="btn btn-yes">
+                ✔️
             </button>
         </div>
     );
