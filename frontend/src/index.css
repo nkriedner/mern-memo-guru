@@ -165,6 +165,7 @@ td {
 }
 
 .card {
+    font-size: 1.75rem;
     border-radius: inherit;
     position: absolute;
     width: 100%;

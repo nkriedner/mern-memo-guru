@@ -35,7 +35,6 @@ const CardForm = () => {
             setError(null);
             console.log("New card added to database:", json);
             dispatch({ type: "CREATE_CARD", payload: json });
-            // dispatch({ type: "CREATE_CARD", payload: json });
         }
     };
 
