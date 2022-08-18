@@ -20,6 +20,7 @@ const CardsList = () => {
 
         fetchCards();
     }, []); // the empty array lets it only render once at the beginning
+
     return (
         <div>
             <h1>Cards</h1>
