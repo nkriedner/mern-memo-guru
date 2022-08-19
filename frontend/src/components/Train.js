@@ -6,11 +6,24 @@ const Train = () => {
     const [currentCard, setCurrentCard] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState("START ⬇️");
     const [currentAnswer, setCurrentAnswer] = useState("START ⬇️");
+    const [currentMemoLevel, setCurrentMemoLevel] = useState("mix");
+    const [memoListLength1, setMemoListLength1] = useState(0);
+    const [memoListLength2, setMemoListLength2] = useState(0);
+    const [memoListLength3, setMemoListLength3] = useState(0);
+    const [memoListLength4, setMemoListLength4] = useState(0);
+    const [memoListLength5, setMemoListLength5] = useState(0);
+    const [memoListLengthMix, setMemoListLengthMix] = useState(0);
+    const [memoList1, setMemoList1] = useState([]);
+    const [memoList2, setMemoList2] = useState([]);
+    const [memoList3, setMemoList3] = useState([]);
+    const [memoList4, setMemoList4] = useState([]);
+    const [memoList5, setMemoList5] = useState([]);
 
     useEffect(() => {
         // (useEffect runs when a component renders)
         // To get all cards:
         const fetchCards = async () => {
+            console.log("fetchCards() runs...");
             const response = await fetch("/api/cards");
             const json = await response.json();
 
@@ -29,6 +42,7 @@ const Train = () => {
     };
 
     const nextCard = () => {
+        updateMemoLists();
         // console.log("clicked for next card...");
 
         // Pick a random card:
@@ -83,10 +97,68 @@ const Train = () => {
         nextCard();
     };
 
+    const setTrainingLevel = (e) => {
+        setCurrentMemoLevel(e.target.value);
+    };
+
+    // Function for setting the memo lists lengths:
+    const updateMemoLists = () => {
+        console.log("updateMemoListLength() runs...");
+
+        const list1 = cards.filter((val) => {
+            return val["memo_level"] === 1;
+        });
+        const list2 = cards.filter((val) => {
+            return val["memo_level"] === 2;
+        });
+        const list3 = cards.filter((val) => {
+            return val["memo_level"] === 3;
+        });
+        const list4 = cards.filter((val) => {
+            return val["memo_level"] === 4;
+        });
+        const list5 = cards.filter((val) => {
+            return val["memo_level"] === 5;
+        });
+        setMemoList1(list1);
+        setMemoList2(list2);
+        setMemoList3(list3);
+        setMemoList4(list4);
+        setMemoList5(list5);
+        setMemoListLength1(list1.length);
+        setMemoListLength2(list2.length);
+        setMemoListLength3(list3.length);
+        setMemoListLength4(list4.length);
+        setMemoListLength5(list5.length);
+        setMemoListLengthMix(cards.length);
+    };
+
+    const startToSelect = () => {
+        updateMemoLists();
+        document.querySelector(".select-request").style.display = "none";
+        document.querySelector("select").style.display = "block";
+        document.querySelector("select").style.margin = "auto";
+    };
+
     return (
         <div>
             <h1>Train</h1>
-            <p>Memo-Level: {currentCard && currentCard.memo_level}</p>
+            <div className="select-level-container">
+                <button className="btn select-request" onClick={startToSelect}>
+                    Choose a memo level!
+                </button>
+                <select onChange={(e) => setTrainingLevel(e)} onClick={updateMemoLists} name="memo_level_option">
+                    <option onClick={updateMemoLists}>Choose a memo level!</option>
+                    <option value="mix">Memo Level Mix ({memoListLengthMix})</option>
+                    <option value="level1">Memo Level 1 ({memoListLength1})</option>
+                    <option value="level2">Memo Level 2 ({memoListLength2})</option>
+                    <option value="level3">Memo Level 3 ({memoListLength3})</option>
+                    <option value="level4">Memo Level 4 ({memoListLength4})</option>
+                    <option value="level5">Memo Level 5 ({memoListLength5})</option>
+                </select>
+            </div>
+            {/* <p>Training Memo-Level: {currentMemoLevel}</p> */}
+            {/* <p>Card Memo-Level: {currentCard && currentCard.memo_level}</p> */}
             <div className="card-container">
                 <div onClick={(e) => toggleCard(e)} className="card-inner">
                     <div className="card question">{currentQuestion}</div>

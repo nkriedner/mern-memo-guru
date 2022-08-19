@@ -206,3 +206,32 @@ td {
     cursor: pointer;
     transform: scale(1.1);
 }
+
+/* SELECT MEMO LEVEL */
+/* .select-level-container {
+    position: relative;
+    border: 1px solid green;
+    width: 500px;
+    height: 100px;
+    margin: auto;
+}
+
+.select-level-container h2,
+.select-level-container select {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.select-level-container h2 {
+    z-index: 10;
+} */
+select {
+    display: none;
+}
+
+.show {
+    display: block;
+    margin: auto;
+}
