@@ -208,30 +208,35 @@ td {
 }
 
 /* SELECT MEMO LEVEL */
-/* .select-level-container {
-    position: relative;
-    border: 1px solid green;
-    width: 500px;
-    height: 100px;
-    margin: auto;
-}
 
-.select-level-container h2,
-.select-level-container select {
+.btn.select-request {
+    background-color: red;
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 0;
+    margin-top: 0; /* reset from default .btn style */
+    font-size: 0.75rem;
 }
 
-.select-level-container h2 {
-    z-index: 10;
-} */
-select {
-    display: none;
+.train-container {
+    position: relative; /* to allow .btn.select-request position absolute */
 }
 
-.show {
-    display: block;
-    margin: auto;
+.btn-lvl {
+    margin-right: 0.5em;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    background: hsl(240, 100%, 50%);
+}
+
+.btn-lvl:hover {
+    background: hsl(240, 100%, 30%);
+}
+
+.active-memo-lvl {
+    background: hsl(300, 100%, 25%);
+}
+
+.active-memo-lvl:hover {
+    background: hsl(300, 100%, 15%);
 }
