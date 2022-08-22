@@ -209,15 +209,6 @@ td {
 
 /* SELECT MEMO LEVEL */
 
-.btn.select-request {
-    background-color: red;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 0; /* reset from default .btn style */
-    font-size: 0.75rem;
-}
-
 .train-container {
     position: relative; /* to allow .btn.select-request position absolute */
 }
