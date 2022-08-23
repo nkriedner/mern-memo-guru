@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useCardsContext } from "../hooks/useCardsContext";
 
 const Train = () => {
     const { cards, dispatch } = useCardsContext();
     const [currentCard, setCurrentCard] = useState(null);
-    const [currentQuestion, setCurrentQuestion] = useState("START ⬇️");
-    const [currentAnswer, setCurrentAnswer] = useState("START ⬇️");
-    const [currentMemoLevel, setCurrentMemoLevel] = useState("Mix");
+    const [currentQuestion, setCurrentQuestion] = useState("");
+    const [currentAnswer, setCurrentAnswer] = useState("");
+    const [currentMemoLevel, setCurrentMemoLevel] = useState("");
     const [currentMemoList, setCurrentMemoList] = useState([]);
     const [memoList1, setMemoList1] = useState([]);
     const [memoList2, setMemoList2] = useState([]);
@@ -28,7 +28,7 @@ const Train = () => {
         };
 
         fetchCards();
-    }, []); // the empty array lets it only render once at the beginning
+    }, [dispatch]); // the empty array lets it only render once at the beginning
 
     const toggleCard = () => {
         // Toggle 'is-flipped' class on each click:
@@ -176,6 +176,7 @@ const Train = () => {
     };
 
     const activateMemoLvl = (e) => {
+        setCurrentCard(null);
         // If clicked on a btn-lvl:
         if (e.target.classList.contains("btn-lvl")) {
             // Delete the active-memo-lvl from all btn-lvl buttons:
@@ -186,9 +187,9 @@ const Train = () => {
                 }
             }
             e.target.classList.add("active-memo-lvl");
-            setCurrentMemoLevel(e.target.textContent.charAt(0));
+            setCurrentMemoLevel(e.target.textContent.charAt(5));
             // Set the current list:
-            const theLevelIs = e.target.textContent.charAt(0);
+            const theLevelIs = e.target.textContent.charAt(5);
             updateCurrentMemoLevel(theLevelIs);
 
             // nextCard();
@@ -200,14 +201,28 @@ const Train = () => {
     return (
         <div className="train-container">
             <h1>Train</h1>
+            {!currentMemoLevel && <p className="choose-memo-level">Choose a memo level to train!</p>}
+            {currentMemoLevel && <p className="choose-memo-level cml-2">Click start / next to train!</p>}
             <div className="select-level-container">
                 <div onClick={(e) => activateMemoLvl(e)} className="lvl-btn-container">
-                    <button className="btn btn-lvl active-memo-lvl">Mix ({cards && cards.length})</button>
-                    <button className="btn btn-lvl">1 ({memoList1.length})</button>
-                    <button className="btn btn-lvl">2 ({memoList2.length})</button>
-                    <button className="btn btn-lvl">3 ({memoList3.length})</button>
-                    <button className="btn btn-lvl">4 ({memoList4.length})</button>
-                    <button className="btn btn-lvl">5 ({memoList5.length})</button>
+                    <button className="btn btn-lvl">
+                        All cards <span>({cards && cards.length})</span>
+                    </button>
+                    <button className="btn btn-lvl">
+                        Memo 1 <span>({memoList1.length})</span>
+                    </button>
+                    <button className="btn btn-lvl">
+                        Memo 2 <span>({memoList2.length})</span>
+                    </button>
+                    <button className="btn btn-lvl">
+                        Memo 3 <span>({memoList3.length})</span>
+                    </button>
+                    <button className="btn btn-lvl">
+                        Memo 4 <span>({memoList4.length})</span>
+                    </button>
+                    <button className="btn btn-lvl">
+                        Memo 5 <span>({memoList5.length})</span>
+                    </button>
                 </div>
             </div>
 
@@ -223,7 +238,8 @@ const Train = () => {
                 ❌
             </button>
             <button onClick={nextCard} className="btn btn-nxt">
-                NEXT
+                {!currentCard && "START"}
+                {currentCard && "NEXT"}
             </button>
             <button onClick={memoLevelUp} className="btn btn-yes">
                 ✔️

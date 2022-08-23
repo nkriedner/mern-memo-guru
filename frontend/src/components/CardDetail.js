@@ -20,7 +20,7 @@ const CardDetail = ({ card }) => {
             <td>{card.content_1}</td>
             <td>{card.content_2}</td>
             <td>{card.memo_level}</td>
-            <td onClick={handleClick} className="delete-btn">
+            <td onClick={handleClick} title="Delete this card" className="delete-btn">
                 X
             </td>
         </tr>
