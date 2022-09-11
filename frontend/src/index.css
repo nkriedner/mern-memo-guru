@@ -79,20 +79,47 @@ header nav ul li a:hover {
 /*************/
 form {
     width: 500px;
-    border: 1px solid black;
     border-radius: 5px;
     padding: 1rem;
-    padding-top: 3rem;
+    /* padding-top: 3rem; */
     margin: auto;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
-form div {
+/* form div {
     margin-bottom: 1rem;
+} */
+
+form textarea {
+    width: 500px;
+    height: 150px;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    font-family: Arial;
+    color: hsl(120, 100%, 15%);
+    outline: none;
+    border: 3px solid black;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+form textarea::placeholder {
+    font-style: italic;
+}
+
+form textarea:focus {
+    border: 5px solid hsl(120, 100%, 15%);
+    transform: scale(1.02);
 }
 
 form button {
     padding: 0.5rem 1rem;
+}
+
+form button.btn-submit {
+    background: green;
 }
 
 .error-box {
@@ -121,18 +148,23 @@ th {
     text-align: center;
 }
 
+thead {
+    background-color: darkblue;
+    color: white;
+}
+
 th,
 td {
     padding: 2.5rem;
 }
 
 table tbody tr {
-    background-color: hsl(240, 100%, 30%);
+    background-color: hsl(240, 100%, 80%);
     color: white;
 }
 
 table tbody tr:nth-child(odd) {
-    background-color: hsl(240, 100%, 50%);
+    background-color: hsl(240, 100%, 60%);
     color: white;
 }
 
@@ -258,4 +290,34 @@ table tbody tr:nth-child(odd) {
 
 .cml-2 {
     color: blue;
+}
+
+/* Signup & Login Forms */
+form.signup,
+form.login {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    text-align: left;
+}
+
+form.signup label,
+form.login label,
+form.signup input,
+form.login input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+form.signup label,
+form.login label {
+    padding-left: 0;
+}
+
+form.signup > *,
+form.login > * {
+    margin-top: 1rem;
 }

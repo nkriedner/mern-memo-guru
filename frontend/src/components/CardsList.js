@@ -32,6 +32,7 @@ const CardsList = () => {
                         <th>Content 1</th>
                         <th>Content 2</th>
                         <th>Memo Level</th>
+                        <th></th>
                     </tr>
                 </thead>
                 {/* Map through cards and create CardDetail row for every card */}

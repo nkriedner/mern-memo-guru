@@ -43,17 +43,27 @@ const CardForm = () => {
             <h2>Add a new card</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="content_1">Content 1: </label>
-                    <textarea type="text" onChange={(e) => setContent_1(e.target.value)} value={content_1} />
+                    <textarea
+                        type="text"
+                        onChange={(e) => setContent_1(e.target.value)}
+                        value={content_1}
+                        placeholder="Englisch"
+                    />
                     {/* <input type="text" onChange={(e) => setContent_1(e.target.value)} value={content_1} /> */}
                 </div>
                 <div>
-                    <label htmlFor="content_2">Content 2: </label>
-                    <textarea type="text" onChange={(e) => setContent_2(e.target.value)} value={content_2} />
+                    <textarea
+                        type="text"
+                        onChange={(e) => setContent_2(e.target.value)}
+                        value={content_2}
+                        placeholder="Deutsch"
+                    />
                     {/* <input type="text" onChange={(e) => setContent_2(e.target.value)} value={content_2} /> */}
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button className="btn btn-submit" type="submit">
+                        Submit
+                    </button>
                 </div>
             </form>
             {/* When an error occurs: */}

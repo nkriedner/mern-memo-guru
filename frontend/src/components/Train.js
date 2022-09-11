@@ -88,8 +88,8 @@ const Train = () => {
         });
         const json = await response.json();
 
-        updateCurrentMemoLevel(currentMemoLevel);
         updateMemoLists(cards);
+        updateCurrentMemoLevel(currentMemoLevel);
 
         if (noCardsLeft) {
             noMoreCards();
@@ -123,6 +123,7 @@ const Train = () => {
         const json = await response.json();
 
         updateMemoLists(cards);
+        updateCurrentMemoLevel(currentMemoLevel);
 
         if (noCardsLeft) {
             noMoreCards();
