@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { useCardsContext } from "../hooks/useCardsContext";
-// import { useCardsContext } from "../hooks/useCardsContext"; // to get access to the dispatch function
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CardForm = () => {
     const { dispatch } = useCardsContext();
+    const { user } = useAuthContext();
     const [content_1, setContent_1] = useState("");
     const [content_2, setContent_2] = useState("");
     const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the default page reload on form submits
+
+        if (!user) {
+            setError("You must be logged in to add data");
+            return;
+        }
 
         const newCard = { content_1, content_2 }; // destructures the form content into a new card variable
 
@@ -19,6 +25,7 @@ const CardForm = () => {
             body: JSON.stringify(newCard),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`,
             },
         });
         const json = await response.json();

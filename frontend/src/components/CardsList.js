@@ -1,15 +1,22 @@
 import { useEffect } from "react";
 import { useCardsContext } from "../hooks/useCardsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
+
 import CardForm from "./CardForm";
 import CardDetail from "./CardDetail";
 
 const CardsList = () => {
     const { cards, dispatch } = useCardsContext();
+    const { user } = useAuthContext();
 
     // useEffect runs when a component renders:
     useEffect(() => {
         const fetchCards = async () => {
-            const response = await fetch("/api/cards");
+            const response = await fetch("/api/cards", {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             const json = await response.json();
 
             if (response.ok) {
@@ -18,8 +25,11 @@ const CardsList = () => {
             }
         };
 
-        fetchCards();
-    }, []); // the empty array lets it only render once at the beginning
+        // Fetch cards if there is a value for the user (= if user is logged in):
+        if (user) {
+            fetchCards();
+        }
+    }, [dispatch, user]); // the empty array lets it only render once at the beginning
 
     return (
         <div>

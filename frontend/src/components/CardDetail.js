@@ -1,12 +1,21 @@
 import { useCardsContext } from "../hooks/useCardsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CardDetail = ({ card }) => {
     const { dispatch } = useCardsContext();
+    const { user } = useAuthContext();
 
     // Click on the delete button:
     const handleClick = async () => {
+        if (!user) {
+            return;
+        }
+
         const response = await fetch("/api/cards/" + card._id, {
             method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${user.token}`,
+            },
         });
         const json = await response.json();
 

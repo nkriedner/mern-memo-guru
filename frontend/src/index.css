@@ -55,11 +55,38 @@ header {
     width: 100vw;
     background: black;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header span {
+    display: block;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    font-style: italic;
 }
 
 header nav ul {
     display: flex;
     justify-content: center;
+}
+
+header nav ul li button.logout-btn {
+    display: block;
+    font-size: 1.2rem;
+    padding: 1rem;
+    transition: all 0.5s;
+    background-color: maroon;
+    outline: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+header nav ul li button.logout-btn:hover {
+    background-color: white;
+    color: maroon;
 }
 
 header nav ul li a {
@@ -72,6 +99,43 @@ header nav ul li a {
 header nav ul li a:hover {
     background: white;
     color: black;
+}
+
+/*************/
+/* CARD FORM */
+/*************/
+
+.home-container {
+    background-color: darkblue;
+    color: white;
+    padding: 1.2rem 1.7rem;
+    width: 750px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.home-container h1 {
+    background-color: hsl(240, 100%, 47%);
+    display: inline-block;
+    padding: 0.75rem;
+    border-radius: 10px;
+}
+
+.home-container h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.home-container p {
+    text-align: left;
+    font-size: 1.3rem;
+    color: rgb(207, 207, 228);
+}
+
+.home-container a {
+    text-decoration: underline;
+    color: white;
 }
 
 /*************/
@@ -124,6 +188,7 @@ form button.btn-submit {
 
 .error-box {
     width: 500px;
+    max-width: 100%;
     border: 2px solid red;
     margin: 1rem auto 2rem auto;
     padding: 2.5rem;

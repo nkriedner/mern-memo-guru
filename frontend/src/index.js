@@ -3,13 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./components/App";
 import { CardsContextProvider } from "./context/CardContext";
-// import { CardsContextProvider } from "./context/CardContext";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <CardsContextProvider>
-            <App />
-        </CardsContextProvider>
+        <AuthContextProvider>
+            <CardsContextProvider>
+                <App />
+            </CardsContextProvider>
+        </AuthContextProvider>
     </React.StrictMode>
 );

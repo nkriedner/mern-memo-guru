@@ -5,7 +5,9 @@ const Card = require("../models/cardModel"); // imports the card model schema
 // FUNCTIONS (for dealing with the database):
 // Get all cards
 const getCards = async (req, res) => {
-    const cards = await Card.find({}).sort({ createdAt: -1 });
+    const user_id = req.user._id; // given by the requireAuth middleware
+
+    const cards = await Card.find({ user_id }).sort({ createdAt: -1 });
     res.status(200).json(cards);
 };
 
@@ -34,7 +36,8 @@ const createCard = async (req, res) => {
 
     // Add document to database
     try {
-        const card = await Card.create({ content_1, content_2, memo_level });
+        const user_id = req.user._id; // given by the requireAuth middleware
+        const card = await Card.create({ content_1, content_2, memo_level, user_id });
         res.status(200).json(card);
     } catch (err) {
         res.status(400).json({ error: err.message });
@@ -84,6 +87,7 @@ const updateCard = async (req, res) => {
     res.status(200).json(card);
 };
 
+// EXPORT:
 module.exports = {
     createCard,
     getCards,

@@ -14,7 +14,9 @@ app.use((req, res, next) => {
 
 // ROUTES:
 const cardRoutes = require("./routes/cards");
+const userRoutes = require("./routes/user");
 app.use("/api/cards", cardRoutes);
+app.use("/api/user", userRoutes);
 app.get("/*", (req, res) => {
     res.send("This is just a random route with no purpose.");
 });

@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useCardsContext } from "../hooks/useCardsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Train = () => {
     const { cards, dispatch } = useCardsContext();
+    const { user } = useAuthContext();
     const [currentCard, setCurrentCard] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState("");
     const [currentAnswer, setCurrentAnswer] = useState("");
@@ -17,7 +19,11 @@ const Train = () => {
     useEffect(() => {
         // To get all cards:
         const fetchCards = async () => {
-            const response = await fetch("/api/cards");
+            const response = await fetch("/api/cards", {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
             const json = await response.json();
 
             if (response.ok) {
@@ -59,8 +65,8 @@ const Train = () => {
 
     const noMoreCards = () => {
         setCurrentCard(null);
-        setCurrentQuestion("(No card for this memo level. Choose a different memo level 2!)");
-        setCurrentAnswer("(No card for this memo level. Choose a different memo level 2!)");
+        setCurrentQuestion("(No card for this memo level. Choose a different memo level!)");
+        setCurrentAnswer("(No card for this memo level. Choose a different memo level!)");
         setCurrentMemoList([]);
     };
 
@@ -84,6 +90,7 @@ const Train = () => {
             body: JSON.stringify({ memo_level: currentCard.memo_level }),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`,
             },
         });
         const json = await response.json();
@@ -118,6 +125,7 @@ const Train = () => {
             body: JSON.stringify({ memo_level: currentCard.memo_level }),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${user.token}`,
             },
         });
         const json = await response.json();

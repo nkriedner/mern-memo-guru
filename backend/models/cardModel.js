@@ -19,6 +19,10 @@ const cardSchema = new Schema(
             type: Number,
             default: 1,
         },
+        user_id: {
+            type: String,
+            required: true,
+        },
     },
     { timestamps: true }
 );
